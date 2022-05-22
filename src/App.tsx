@@ -36,7 +36,7 @@ const App: React.FC = () => {
           ? (<LoaderButton title='Load previous' onLoad={() => setPageNumber(pageNumber-1)}/>)
           : null
         }
-        <ImagesWrapper data={data?.data} isLoading={isLoading}/>
+        <ImagesWrapper data={data?.data} isLoading={isLoading} error={data?.error}/>
         {/* {!(data?.totalCount && pageNumber*itemsPerPage > data?.totalCount) && (<LoaderButton onLoad={() => setPageNumber(pageNumber+1)}/>)} */}
         {(data?.totalCount && data?.totalCount > 0 && !memoizedEndOfData)
           ? (<LoaderButton title='Load more...' onLoad={() => setPageNumber(pageNumber+1)}/>)
