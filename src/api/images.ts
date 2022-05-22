@@ -6,7 +6,7 @@ import jsonData from 'consts/thumbnails.json';
 const getImages = (pageNumber: number, itemsPerPage: number): Promise<ApiResponse<ImgElement[]>> => {
   const startElement: number = pageNumber > 0 ? pageNumber*itemsPerPage+1 : 0;
   if (process.env.NODE_ENV === 'production') {
-    return axios.get<ImgElement[]>("/")
+    return axios.get<ImgElement[]>("")
       .then(res => {
         const responseData = res.data.slice(startElement, startElement + itemsPerPage);
         return {
