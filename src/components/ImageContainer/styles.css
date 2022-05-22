@@ -1,0 +1,19 @@
+.image-container {
+  max-width: 100%;
+}
+
+.image {
+  width: 100%;
+}
+
+.full {
+  transition: opacity 400ms ease 0ms;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.thumb {
+  filter: blur(20px);
+  transform: scale(1.1);
+  transition: opacity 1s ease-in-out;
+}

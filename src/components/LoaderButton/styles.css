@@ -1,0 +1,14 @@
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.button-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.button-wrapper:first-child {
+  margin-top: 0;
+}
