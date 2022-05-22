@@ -19,26 +19,29 @@ const App: React.FC = () => {
     }
   );
 
-  console.log('--images--', data);
-
   // setTimeout(() => {
   //   setPageNumber(3)
   // }, 3000)
 
-  const memoizedEndOfData = useMemo(() => {
-    console.log('--trigger--', pageNumber)
-    return data?.totalCount && pageNumber*itemsPerPage > data?.totalCount
+  const memoizedEndOfData = useMemo<boolean>(() => {
+    return (data?.totalCount && data?.totalCount > 0 && (pageNumber*itemsPerPage > data?.totalCount)) as boolean
   }, [data?.totalCount, pageNumber]);
 
-  console.log('--isLoading--',isLoading)
+  // const eof = (data?.totalCount && data?.totalCount > 0) && (pageNumber*itemsPerPage > data?.totalCount)
 
   return (
     <div className="App">
       <div className="container">
-        {data?.totalCount && pageNumber > 0 && (<LoaderButton title='Load previous' onLoad={() => setPageNumber(pageNumber-1)}/>)}
+        {(data?.totalCount && data?.totalCount > 0 && pageNumber > 0)
+          ? (<LoaderButton title='Load previous' onLoad={() => setPageNumber(pageNumber-1)}/>)
+          : null
+        }
         <ImagesWrapper data={data?.data} isLoading={isLoading}/>
         {/* {!(data?.totalCount && pageNumber*itemsPerPage > data?.totalCount) && (<LoaderButton onLoad={() => setPageNumber(pageNumber+1)}/>)} */}
-        {data?.totalCount && !memoizedEndOfData && (<LoaderButton title='Load more...' onLoad={() => setPageNumber(pageNumber+1)}/>)}
+        {(data?.totalCount && data?.totalCount > 0 && !memoizedEndOfData)
+          ? (<LoaderButton title='Load more...' onLoad={() => setPageNumber(pageNumber+1)}/>)
+          : null
+        }
       </div>
       <div className="container">
         Map component
